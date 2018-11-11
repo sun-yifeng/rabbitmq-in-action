@@ -7,13 +7,15 @@
 import json, pika
 from optparse import OptionParser
 
+# 读取命令行
 opt_parser = OptionParser()
+# 路邮键
 opt_parser.add_option("-r",
                       "--routing-key",
                       dest="routing-key",
-                      delp="Routing key for message (e.g. myalert.im)"
+                      help="Routing key for message (e.g. myalert.im)"
                       )
-
+# 消息告警
 opt_parser.add_option("-m",
                       "--message",
                       dest="message",
@@ -22,15 +24,18 @@ opt_parser.add_option("-m",
 
 args = opt_parser.parse_args()[0]
 
+# 建立到服务器的连接
 creds_broker = pika.PlainCredentials("alert_user", "alertme")
 
-conn_param = pika.ConnectionParameters("localhost",
+# 连接参数设置
+conn_params = pika.ConnectionParameters("localhost",
                                        virtual_host="/",
-                                       creds_broker=creds_broker
+                                       credentials=creds_broker
                                        )
+# 消息代理服务器
+conn_broker = pika.BlockingConnection(conn_params)
 
-conn_broker = pika.BlockingConnection(conn_param)
-
+# 获取通信信道
 channel = conn_broker.channel()
 
 msg = json.dump(args.message)
