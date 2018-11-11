@@ -21,4 +21,9 @@ guest/guest
 ./rabbitmqctl set_permissions -p oak cashing-tier ".*" ".*" ".*"           创建权限
 ./rabbitmqctl clear_permissions -p oak cashing-tier                        创建权限
 
+6、统计信息
+./rabbitmqctl list_queues                      查看队列和消息数
+./rabbitmqctl list_exchanges                   查看交换器和绑定
+./rabbitmqctl list_bindings                    查看绑定信息
+
 
