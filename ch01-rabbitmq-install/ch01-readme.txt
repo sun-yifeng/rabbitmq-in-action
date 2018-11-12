@@ -12,7 +12,7 @@ http://localhost:15672
 guest/guest
 
 5、权限控制
-./rabbitmqctl list_users                       查看用户
+./rabbitmqctl list_users                       查看用户g
 ./rabbitmqctl add_user cashing-tier cashMe1    创建用户
 ./rabbitmqctl list_vhosts                      查看vhost
 ./rabbitmqctl add_vhost oak                    创建vhost
